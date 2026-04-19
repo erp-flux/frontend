@@ -13,8 +13,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-type BadgeVariant = 'light' | 'solid'
-type BadgeSize = 'sm' | 'md'
+type BadgeVariant = 'light' | 'solid' | 'outline'
+type BadgeSize = 'xs' | 'sm' | 'md' | 'lg'
 type BadgeColor = 'primary' | 'success' | 'error' | 'warning' | 'info' | 'light' | 'dark'
 
 interface BadgeProps {
@@ -35,8 +35,10 @@ const baseStyles =
   'inline-flex items-center px-2.5 py-0.5 justify-center gap-1 rounded-full font-medium capitalize'
 
 const sizeStyles = {
+  xs: 'text-[10px] px-1.5 py-0.5',
   sm: 'text-theme-xs',
   md: 'text-sm',
+  lg: 'text-base',
 }
 
 const variants = {
@@ -58,6 +60,15 @@ const variants = {
     light: 'bg-gray-400 dark:bg-white/5 text-white dark:text-white/80',
     dark: 'bg-gray-700 text-white dark:text-white',
   },
+  outline: {
+    primary: 'border border-brand-500 text-brand-500 dark:border-brand-400 dark:text-brand-400',
+    success: 'border border-success-500 text-success-600 dark:border-success-500 dark:text-success-500',
+    error: 'border border-error-500 text-error-600 dark:border-error-500 dark:text-error-500',
+    warning: 'border border-warning-500 text-warning-600 dark:border-warning-400 dark:text-orange-400',
+    info: 'border border-blue-light-500 text-blue-light-500 dark:border-blue-light-500 dark:text-blue-light-500',
+    light: 'border border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white/80',
+    dark: 'border border-gray-700 text-gray-800 dark:border-gray-500 dark:text-white',
+  }
 }
 
 const sizeClass = computed(() => sizeStyles[props.size])
