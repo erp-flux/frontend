@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { authService } from '../services/auth.service'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -140,12 +141,41 @@ const router = createRouter({
         title: 'Signup',
       },
     },
+    {
+      path: '/clients',
+      name: 'Clients',
+      component: () => import('../views/Clients/ClientList.vue'),
+      meta: {
+        title: 'Gestion des Clients',
+      },
+    },
+    {
+      path: '/personnel',
+      name: 'Personnel',
+      component: () => import('../views/Personnel/PersonnelList.vue'),
+      meta: {
+        title: 'Gestion Personnel',
+      },
+    },
   ],
 })
 
 export default router
 
 router.beforeEach((to, from, next) => {
-  document.title = `Vue.js ${to.meta.title} | TailAdmin - Vue.js Tailwind CSS Dashboard Template`
+  document.title = `Vue.js ${to.meta.title} | Fluxaa - Tontine Management System`
+
+  const publicPages = ['/signin', '/signup', '/error-404']
+  const authRequired = !publicPages.includes(to.path)
+  const loggedIn = authService.isAuthenticated()
+
+  if (authRequired && !loggedIn) {
+    return next('/signin')
+  }
+
+  if (loggedIn && (to.path === '/signin' || to.path === '/signup')) {
+    return next('/')
+  }
+
   next()
 })
