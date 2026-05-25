@@ -150,6 +150,22 @@ const router = createRouter({
       },
     },
     {
+      path: '/products',
+      name: 'Products',
+      component: () => import('../views/Products/ProductList.vue'),
+      meta: {
+        title: 'Gestion des produits',
+      },
+    },
+    {
+      path: '/bacs',
+      name: 'Bacs',
+      component: () => import('../views/Bacs/BacList.vue'),
+      meta: {
+        title: 'Gestion des Bacs',
+      },
+    },
+    {
       path: '/personnel',
       name: 'Personnel',
       component: () => import('../views/Personnel/PersonnelList.vue'),

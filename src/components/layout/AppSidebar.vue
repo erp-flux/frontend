@@ -259,6 +259,16 @@ const menuGroups = [
         path: "/clients",
       },
       {
+        icon: BoxCubeIcon,
+        name: "Gestion des produits",
+        path: "/products",
+      },
+      {
+        icon: BoxCubeIcon,
+        name: "Gestion des Bacs",
+        path: "/bacs",
+      },
+      {
         icon: CalenderIcon,
         name: "Calendar",
         path: "/calendar",
